@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS  Customers, Categories, OrderDetails,Orders, Employees, Products, Shippers;
+DROP TABLE IF EXISTS  Customers, Categories, OrderDetails,Orders, Employees, Products, Shippers, Suppliers;
 
 CREATE TABLE Customers
 (
@@ -18,6 +18,24 @@ CREATE TABLE Categories
     Description  NVARCHAR(255)
 );
 
+CREATE TABLE Shippers
+(
+    ShipperID   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    ShipperName NVARCHAR(255),
+    Phone       NVARCHAR(255)
+);
+
+CREATE TABLE Suppliers (
+    SupplierID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    SupplierName NVARCHAR(255),
+    ContactName NVARCHAR(255),
+    Address NVARCHAR(255),
+    City NVARCHAR(255),
+    PostalCode NVARCHAR(255),
+    Country NVARCHAR(255),
+    Phone NVARCHAR(255)
+);
+
 CREATE TABLE Employees
 (
     EmployeeID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -35,7 +53,9 @@ CREATE TABLE Products
     SupplierID  INT,
     CategoryID  INT,
     Unit        NVARCHAR(255),
-    Price       FLOAT
+    Price       FLOAT,
+    CONSTRAINT FK_SupplierID FOREIGN KEY (SupplierID) REFERENCES Suppliers (SupplierID) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT FK_CategoryID FOREIGN KEY (CategoryID) REFERENCES Categories (CategoryID) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE Orders
@@ -44,7 +64,10 @@ CREATE TABLE Orders
     CustomerID INT,
     EmployeeID INT,
     OrderDate  DATE,
-    ShipperID  INT
+    ShipperID  INT,
+    CONSTRAINT FK_CustomerID FOREIGN KEY (CustomerID) REFERENCES Customers (CustomerID) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT FK_EmployeeID FOREIGN KEY (EmployeeID) REFERENCES Employees (EmployeeID) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT FK_ShipperID FOREIGN KEY (ShipperID) REFERENCES Shippers (ShipperID) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
 CREATE TABLE OrderDetails
@@ -53,13 +76,8 @@ CREATE TABLE OrderDetails
     OrderID       INT,
     ProductID     INT,
     Quantity      INT,
-    CONSTRAINT fk_orderID FOREIGN KEY (OrderID) REFERENCES Orders (OrderID) ON DELETE RESTRICT ON UPDATE RESTRICT,
-    CONSTRAINT fk_ProductID FOREIGN KEY (ProductID) REFERENCES Products (ProductID) ON DELETE RESTRICT ON UPDATE RESTRICT
+    CONSTRAINT FK_OrderID FOREIGN KEY (OrderID) REFERENCES Orders (OrderID) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT FK_ProductID FOREIGN KEY (ProductID) REFERENCES Products (ProductID) ON DELETE RESTRICT ON UPDATE RESTRICT
 );
 
-CREATE TABLE Shippers
-(
-    ShipperID   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    ShipperName NVARCHAR(255),
-    Phone       NVARCHAR(255)
-);
+
