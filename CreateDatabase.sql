@@ -1,9 +1,4 @@
-DROP TABLE IF EXISTS  Customers ;
-DROP TABLE IF EXISTS  Categories ;
-DROP TABLE IF EXISTS  OrderDetails ;
-DROP TABLE IF EXISTS  Employees ;
-DROP TABLE IF EXISTS  Products ;
-DROP TABLE IF EXISTS  Customers ;
+DROP TABLE IF EXISTS  Customers, Categories, OrderDetails,Orders, Employees, Products, Shippers;
 
 CREATE TABLE Customers
 (
@@ -33,27 +28,6 @@ CREATE TABLE Employees
     Notes      TEXT
 );
 
-
-
-CREATE TABLE OrderDetails
-(
-    OrderDetailID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    OrderID       INT,
-    ProductID     INT,
-    Quantity      INT
-);
-
-
-
-CREATE TABLE Orders
-(
-    OrderID    INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    CustomerID INT,
-    EmployeeID INT,
-    OrderDate  DATE,
-    ShipperID  INT
-);
-
 CREATE TABLE Products
 (
     ProductID   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
@@ -64,22 +38,28 @@ CREATE TABLE Products
     Price       FLOAT
 );
 
+CREATE TABLE Orders
+(
+    OrderID    INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    CustomerID INT,
+    EmployeeID INT,
+    OrderDate  DATE,
+    ShipperID  INT
+);
+
+CREATE TABLE OrderDetails
+(
+    OrderDetailID INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
+    OrderID       INT,
+    ProductID     INT,
+    Quantity      INT,
+    CONSTRAINT fk_orderID FOREIGN KEY (OrderID) REFERENCES Orders (OrderID) ON DELETE RESTRICT ON UPDATE RESTRICT,
+    CONSTRAINT fk_ProductID FOREIGN KEY (ProductID) REFERENCES Products (ProductID) ON DELETE RESTRICT ON UPDATE RESTRICT
+);
+
 CREATE TABLE Shippers
 (
     ShipperID   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
     ShipperName NVARCHAR(255),
     Phone       NVARCHAR(255)
 );
-
-CREATE TABLE Suppliers
-(
-    SupplierID   INTEGER NOT NULL PRIMARY KEY AUTO_INCREMENT,
-    SupplierName NVARCHAR(255),
-    ContactName  NVARCHAR(255),
-    Address      NVARCHAR(255),
-    City         NVARCHAR(255),
-    PostalCode   NVARCHAR(255),
-    Country      NVARCHAR(255),
-    Phone        NVARCHAR(255)
-);
-
