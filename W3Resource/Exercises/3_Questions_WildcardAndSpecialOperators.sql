@@ -36,5 +36,40 @@ SELECT * FROM customer WHERE cust_name LIKE '%n';
 -- 11. Write a SQL statement to find those salesmen with all information whose name containing the 1st character is 'N' and the 4th character is 'l' and rests may be any character.
 SELECT * FROM salesman WHERE name LIKE 'N%' AND name LIKE '___l%';
 
--- 12. Write a SQL statement to find those rows from the table testtable which contain the escape character underscore ( _ ) in its column 'col1'.
 
+USE Testtable;
+-- 12. Write a SQL statement to find those rows from the table testtable which contain the escape character underscore ( _ ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 LIKE '%\_%';
+
+-- 13. Write a SQL statement to find those rows from the table testtable which does not contain the character underscore ( _ ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 NOT LIKE '%\_%';
+
+-- 14. Write a SQL statement to find those rows from the table testtable which contain the escape character ( / ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 LIKE '%/%';
+SELECT * FROM testtable WHERE col1 LIKE '%/\%' ESCAPE '/';
+
+-- 15. Write a SQL statement to find those rows from the table testtable which does not contain the escape character ( / ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 NOT LIKE  '%/%';
+
+-- 16. Write a SQL statement to find those rows from the table testtable which contain the string ( _/ ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 LIKE  '%\_/%';
+
+-- 17. Write a SQL statement to find those rows from the table testtable which does not contain the string ( _/ ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 NOT LIKE '%\_/%';
+
+-- 18. Write a SQL statement to find those rows from the table testtable which contain the character ( % ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 LIKE '%\%%';
+
+-- 19. Write a SQL statement to find those rows from the table testtable which does not contain the character ( % ) in its column 'col1'.
+SELECT * FROM testtable WHERE col1 NOT LIKE '%\%%';
+
+USE Inventory;
+-- 20. Write a SQL statement to find that customer with all information who does not get any grade except NULL.
+SELECT * FROM customer WHERE grade IS NULL;
+
+-- 21. Write a SQL statement to find that customer with all information who gets a grade except NULL value.
+SELECT * FROM customer WHERE grade IS NOT NULL;
+
+USE Emp;
+-- 22. Write a query in SQL to display all the data of employees whose last name begins with an 'D'.
+SELECT * FROM emp_details WHERE emp_lname LIKE 'D%';
