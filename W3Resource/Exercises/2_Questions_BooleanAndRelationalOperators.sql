@@ -6,6 +6,8 @@
 -- Inventory Database --
 -- Inventory Database --
 
+USE Inventory;
+
 -- 1. Write a query to display all customers with a grade above 100.
 SELECT * FROM customer WHERE grade > 100;
 
@@ -51,12 +53,23 @@ WHERE
 
 -- 10. Write a SQL query to display order number, purchase amount,
 -- achieved, the unachieved percentage for those order which exceeds the 50% of the target value of 6000.
-Select ord_no, purch_amt,
+SELECT ord_no, purch_amt,
        (100 * purch_amt / 6000) AS "Achieved %",
        (100 * (6000 - purch_amt) / 6000) AS "Unachieved %"
-from orders
+FROM orders
 WHERE (100 * purch_amt) / 6000 > 50;
+
+
+
 
 -- Employee Database --
 -- Employee Database --
 -- Employee Database --
+
+USE Emp;
+-- 11. Write a query in SQL to find the data of employees whose last name is Dosni or Mardy.
+SELECT * FROM emp_details WHERE emp_lname = 'Dosni' or emp_lname = 'Mardy';
+
+-- 12. Write a query in SQL to display all the data of employees that work in department 47 or department 63.
+SELECT * FROM emp_details WHERE emp_dept = 47 or emp_dept = 63;
+
