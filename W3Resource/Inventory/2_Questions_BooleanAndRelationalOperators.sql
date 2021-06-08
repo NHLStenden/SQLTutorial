@@ -2,6 +2,9 @@
 -- orginele antwoorden: https://www.w3resource.com/sql-exercises/sql-boolean-operator-exercise-6.php
 -- je kan de nummer vervangen in bovenstaande link
 
+-- Inventory Database --
+-- Inventory Database --
+-- Inventory Database --
 
 -- 1. Write a query to display all customers with a grade above 100.
 SELECT * FROM customer WHERE grade > 100;
@@ -53,3 +56,7 @@ Select ord_no, purch_amt,
        (100 * (6000 - purch_amt) / 6000) AS "Unachieved %"
 from orders
 WHERE (100 * purch_amt) / 6000 > 50;
+
+-- Employee Database --
+-- Employee Database --
+-- Employee Database --
