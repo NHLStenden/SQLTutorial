@@ -92,6 +92,6 @@ USE Emp;
 SELECT COUNT(emp_dept) FROM emp_details;
 
 -- 25. Write a query in SQL to find the number of employees in each department along with the department code.
-SELECT emp_dept, COUNT(emp_dept) FROm emp_details GROUP BY emp_dept
+SELECT emp_dept, COUNT(emp_dept) FROM emp_details GROUP BY emp_dept
 
 
