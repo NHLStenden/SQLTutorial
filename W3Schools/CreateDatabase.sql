@@ -1,3 +1,6 @@
+CREATE DATABASE Webshop;
+USE Webshop;
+
 DROP TABLE IF EXISTS  Customers, Categories, OrderDetails,Orders, Employees, Products, Shippers, Suppliers;
 
 CREATE TABLE Customers
